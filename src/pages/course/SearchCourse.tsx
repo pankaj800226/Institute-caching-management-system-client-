@@ -16,7 +16,6 @@ import { useState } from "react";
 const SearchCourse = () => {
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
     const [open, setOpen] = useState(false);
 
 

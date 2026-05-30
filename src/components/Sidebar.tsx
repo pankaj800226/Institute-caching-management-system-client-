@@ -7,7 +7,6 @@ import {
     LayoutDashboard,
     User,
     Users,
-    ClipboardCheck,
     CreditCard,
     User2
 } from 'lucide-react';
