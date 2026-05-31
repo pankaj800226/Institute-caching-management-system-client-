@@ -2,6 +2,7 @@ import Sidebar from "../../components/Sidebar";
 import SearchCourse from "./SearchCourse";
 
 const Course = () => {
+    
     return (
         <div className="flex min-h-screen bg-[#f6f4fa]">
             <Sidebar />
@@ -10,7 +11,7 @@ const Course = () => {
                 <SearchCourse />
 
 
-                courses
+                
             </main>
         </div>
     )
