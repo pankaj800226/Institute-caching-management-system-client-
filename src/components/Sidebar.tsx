@@ -53,21 +53,19 @@ const Sidebar = () => {
                     {/* ========================================================= */}
                     {/* DESKTOP SIDEBAR                                           */}
                     {/* ========================================================= */}
-                    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-[72px] lg:w-[240px] border-r border-purple-100 bg-[#ebe6f5] p-3 pt-8 transition-all duration-300 z-40">
+                    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-screen w-[72px] lg:w-[240px]  bg-[#ebe6f5] p-3 pt-8 transition-all duration-300 z-40">
                         {/* Logo Section */}
                         <div className="mb-10 px-3">
                             <Link to="/" className="flex items-center gap-3 group">
                                 {/* Enhanced Logo Image */}
-                                <div className="relative flex-shrink-0">
-                                    <img
-                                        width={42}
-                                        height={42}
-                                        className="rounded-xl object-cover bg-white p-1 shadow-md shadow-purple-900/10 border border-white/60 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-105"
-                                        src={logo}
-                                        alt="Logo"
-                                    />
-                                    {/* Ambient glow decoration on hover */}
-                                    <div className="absolute inset-0 bg-indigo-500/10 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                                <div className="relative flex-shrink-0 w-[64px] h-[64px] rounded-full p-[2px] bg-gradient-to-tr from-[#4f46e5] via-[#a855f7] to-[#6366f1] flex items-center justify-center shadow-md shadow-indigo-900/10">
+                                    <div className="w-full h-full bg-white rounded-full p-[2px] flex items-center justify-center overflow-hidden">
+                                        <img
+                                            className="w-full h-full object-cover rounded-full"
+                                            src={logo}
+                                            alt="Logo"
+                                        />
+                                    </div>
                                 </div>
 
                                 {/* Enhanced Logo Text */}
@@ -128,18 +126,23 @@ const Sidebar = () => {
                             >
                                 <X size={24} />
                             </button>
+
                             <div className="flex items-center gap-2.5">
-                                <img
-                                    width={32}
-                                    height={32}
-                                    className='rounded-lg object-cover bg-white p-0.5 shadow-sm border border-white/60'
-                                    src={logo}
-                                    alt="Logo"
-                                />
+                                <div className="flex-shrink-0 w-8 h-8 rounded-full p-[1.5px] bg-gradient-to-br from-[#2d2738] via-[#a855f7] to-[#4f46e5] flex items-center justify-center shadow-xs">
+                                    <div className="w-full h-full bg-white rounded-full p-0.5 flex items-center justify-center overflow-hidden">
+                                        <img
+                                            className='w-full h-full rounded-full object-cover'
+                                            src={logo}
+                                            alt="Logo"
+                                        />
+                                    </div>
+                                </div>
+
                                 <span className="text-lg font-black tracking-tight bg-gradient-to-br from-[#1e1b4b] via-[#2d2738] to-[#4f46e5] bg-clip-text text-transparent">
                                     Institute<span className="text-[#4f46e5]">Hub</span>
                                 </span>
                             </div>
+
                         </div>
 
                         {/* Drawer Links */}

@@ -11,6 +11,8 @@ import PageNotFound from "./components/ui/PageNotFound";
 const Dashboard = React.lazy(() => import('./pages/Dashboard/Dashboard'));
 const Search = React.lazy(() => import('./pages/Search'));
 const Course = React.lazy(() => import('./pages/course/Course'));
+const CourseDetails = React.lazy(() => import('./pages/course/CourseDetails'));
+
 
 
 // auth
@@ -39,6 +41,8 @@ const App = () => {
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/course" element={<Course />} />
+          <Route path="/courseDetails" element={<CourseDetails />} />
+
 
 
           {/*  auth  */}

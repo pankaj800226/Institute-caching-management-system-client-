@@ -1,5 +1,4 @@
 import {
-  useEffect,
   useState,
   type FormEvent,
 } from "react";
@@ -13,110 +12,39 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
-  Phone,
+  Mail,
   Briefcase,
   ChevronDown,
 } from "lucide-react";
 
-interface CountryType {
-  name: string;
-  code: string;
-  cca2: string;
-}
-
 const Register = () => {
-  const [showPassword, setShowPassword] =
-    useState(false);
-
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [fullName, setFullName] = useState('')
-  const [countryCode, setCountryCode] = useState("+91");
-  const [password, setPassword] = useState('')
-  const [role, setRole] = useState("doctor");
-
-  const [countries, setCountries] = useState<CountryType[]>([]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("teacher");
   const [loading, setLoading] = useState(false);
-
-  // Fetch all countries
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const res = await fetch(
-          "https://restcountries.com/v3.1/all?fields=name,idd,cca2"
-        );
-
-        const data = await res.json();
-
-        const formatted = data
-          .filter(
-            (item: any) =>
-              item.idd?.root &&
-              item.idd?.suffixes?.length
-          )
-          .map((item: any) => ({
-            name: item.name.common,
-            code:
-              item.idd.root +
-              item.idd.suffixes[0],
-            cca2: item.cca2,
-          }))
-          .sort((a: CountryType, b: CountryType) =>
-            a.name.localeCompare(b.name)
-          );
-
-        setCountries(formatted);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchCountries();
-  }, []);
-
-  // Auto detect user country
-  useEffect(() => {
-    const getCountryCode = async () => {
-      try {
-        const res = await fetch(
-          "https://ipapi.co/json/"
-        );
-
-        const data = await res.json();
-
-        if (data.country_calling_code) {
-          setCountryCode(
-            data.country_calling_code
-          );
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getCountryCode();
-  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (
-    e: FormEvent
-  ) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      console.log(fullName);
-      console.log(role);
-      console.log(countryCode);
-      console.log(password);
-      console.log(phoneNumber);
+      console.log("Username:", username);
+      console.log("Email:", email);
+      console.log("Password:", password);
+      console.log("Role:", role);
+
+      // Add your registration API logic here
 
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -155,10 +83,10 @@ const Register = () => {
           onSubmit={handleSubmit}
           className="space-y-4 relative z-10"
         >
-          {/* Full Name Input Field */}
+          {/* Username Input Field */}
           <div>
             <label className="block text-slate-500 text-xs font-bold uppercase tracking-wider mb-2 px-1">
-              Full Name
+              Username
             </label>
 
             <div className="relative flex items-center group/input">
@@ -170,52 +98,34 @@ const Register = () => {
               <input
                 type="text"
                 name="username"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="John Doe"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="johndoe123"
                 className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-4 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
               />
             </div>
           </div>
 
-          {/* Phone Number Custom Row */}
+          {/* Email Input Field */}
           <div>
             <label className="block text-slate-500 text-xs font-bold uppercase tracking-wider mb-2 px-1">
-              Phone Number
+              Email Address
             </label>
 
-            <div className="flex gap-2.5">
-              {/* Country Code Selection Dropdown */}
-              <div className="relative flex items-center min-w-[105px] max-w-[115px]">
-                <select
-                  value={countryCode}
-                  onChange={(e) => setCountryCode(e.target.value)}
-                  className="w-full bg-white/80 border border-slate-200 rounded-xl px-3.5 py-3.5 text-slate-700 font-medium text-sm focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 appearance-none cursor-pointer shadow-sm shadow-slate-100"
-                >
-                  {countries.map((item, index) => (
-                    <option key={index} value={item.code} className="bg-white text-slate-700">
-                      {item.cca2} {item.code}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown size={14} className="absolute right-3 text-slate-400 pointer-events-none" />
-              </div>
+            <div className="relative flex items-center group/input">
+              <Mail
+                size={17}
+                className="absolute left-4 text-slate-400 group-focus-within/input:text-blue-500 transition-colors pointer-events-none"
+              />
 
-              {/* Core Telephone Input Area */}
-              <div className="relative flex-1 flex items-center group/input">
-                <Phone
-                  size={17}
-                  className="absolute left-4 text-slate-400 group-focus-within/input:text-blue-500 transition-colors pointer-events-none"
-                />
-
-                <input
-                  type="tel"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="9876543210"
-                  className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-4 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
-                />
-              </div>
+              <input
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john@example.com"
+                className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-4 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
+              />
             </div>
           </div>
 
@@ -267,7 +177,7 @@ const Register = () => {
                 onChange={(e) => setRole(e.target.value)}
                 className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-10 py-3.5 text-slate-700 font-medium focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm appearance-none cursor-pointer shadow-sm shadow-slate-100"
               >
-                <option value="doctor" className="bg-white text-slate-700">Doctor</option>
+                <option value="teacher" className="bg-white text-slate-700">Teacher</option>
               </select>
 
               <ChevronDown size={14} className="absolute right-4 text-slate-400 pointer-events-none" />

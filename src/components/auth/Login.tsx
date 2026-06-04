@@ -6,12 +6,12 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
-  Phone,
+  Mail,
 } from "lucide-react";
 
 const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const togglePasswordVisibility = (): void => {
@@ -20,6 +20,9 @@ const Login: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+    console.log("Email:", email);
+    console.log("Password:", password);
+    // Add your login authentication API logic here
   };
 
   return (
@@ -46,30 +49,28 @@ const Login: React.FC = () => {
           <h1 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 bg-clip-text text-transparent tracking-tight">
             Welcome Back
           </h1>
-
         </div>
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
 
-          {/* Phone Number Input Custom Row */}
+          {/* Email Address Input Field */}
           <div>
             <label className="block text-slate-500 text-xs font-bold uppercase tracking-wider mb-2 px-1">
-              Phone Number
+              Email Address
             </label>
 
-
-              {/* Core Input Field */}
-              <div className="relative flex-1 flex items-center group/input">
-                <Phone size={17} className="absolute left-4 text-slate-400 group-focus-within/input:text-blue-500 transition-colors pointer-events-none" />
-                <input
-                  type="tel"
-                  placeholder="9876543210"
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                  className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-4 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
-                />
-              </div>
+            <div className="relative flex-1 flex items-center group/input">
+              <Mail size={17} className="absolute left-4 text-slate-400 group-focus-within/input:text-blue-500 transition-colors pointer-events-none" />
+              <input
+                type="email"
+                placeholder="john@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-4 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
+              />
+            </div>
           </div>
 
           {/* Password Input Box */}
@@ -94,6 +95,7 @@ const Login: React.FC = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 className="w-full bg-white/80 border border-slate-200 rounded-xl pl-11 pr-12 py-3.5 text-slate-800 font-medium placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/5 transition-all duration-300 text-sm shadow-sm shadow-slate-100"
               />
               <button
