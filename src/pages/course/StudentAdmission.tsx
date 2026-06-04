@@ -1,8 +1,8 @@
-import { Pencil, Trash2, Search, UserPlus } from 'lucide-react';
+import { Pencil, Trash2, Search, UserPlus, Eye } from 'lucide-react';
 
 const StudentAdmission = () => {
   // Sample data - keeping it ready for search state filtering
- const students = [
+  const students = [
     { id: 1, name: 'John Doe', fatherName: 'Robert Doe', date: '2026-06-01', address: '123 Main St, New York' },
     { id: 2, name: 'Jane Smith', fatherName: 'Michael Smith', date: '2026-06-03', address: '456 Elm St, Los Angeles' },
     { id: 3, name: 'Alex Johnson', fatherName: 'David Johnson', date: '2026-06-04', address: '789 Oak Ave, Chicago' },
@@ -12,14 +12,14 @@ const StudentAdmission = () => {
 
 
   return (
-    <div className="p-6 md:p-8 max-w-6xl mx-auto min-h-screen bg-gray-50/50">
+    <div className="md:p-8 max-w-6xl mx-auto min-h-screen bg-gray-50/50">
       {/* Header section */}
       <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-gray-100 pb-5">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Student Admissions</h1>
           <p className="text-sm text-gray-500 mt-1">Manage, search, and view newly admitted student details</p>
         </div>
-        
+
         <button className="flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-indigo-700 shadow-sm shadow-indigo-100 transition active:scale-95 w-full md:w-auto">
           <UserPlus size={16} />
           New Admission
@@ -32,8 +32,8 @@ const StudentAdmission = () => {
           <span className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
             <Search size={18} />
           </span>
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="Search by student or father's name..."
             className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-xl text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition shadow-sm"
           />
@@ -72,13 +72,21 @@ const StudentAdmission = () => {
                   </td>
                   <td className="py-4 px-6 text-right whitespace-nowrap">
                     <div className="flex items-center justify-end gap-2">
-                      <button 
+                      <button
+                        title="Edit Record"
+                        className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition duration-150 cursor-pointer"
+                      >
+                        <Eye size={16} />
+                      </button>
+
+                      <button
                         title="Edit Record"
                         className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition duration-150 cursor-pointer"
                       >
                         <Pencil size={16} />
                       </button>
-                      <button 
+
+                      <button
                         title="Delete Record"
                         className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition duration-150 cursor-pointer"
                       >
@@ -91,7 +99,7 @@ const StudentAdmission = () => {
             </tbody>
           </table>
         </div>
-        
+
         {/* Empty state fallback */}
         {students.length === 0 && (
           <div className="text-center py-16 bg-white">
