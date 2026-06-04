@@ -1,15 +1,11 @@
 import { Pencil, Trash2, Search, UserPlus, Eye } from 'lucide-react';
 
 const StudentAdmission = () => {
-  // Sample data - keeping it ready for search state filtering
   const students = [
     { id: 1, name: 'John Doe', fatherName: 'Robert Doe', date: '2026-06-01', address: '123 Main St, New York' },
     { id: 2, name: 'Jane Smith', fatherName: 'Michael Smith', date: '2026-06-03', address: '456 Elm St, Los Angeles' },
     { id: 3, name: 'Alex Johnson', fatherName: 'David Johnson', date: '2026-06-04', address: '789 Oak Ave, Chicago' },
   ];
-
-
-
 
   return (
     <div className="md:p-8 max-w-6xl mx-auto min-h-screen bg-gray-50/50">
