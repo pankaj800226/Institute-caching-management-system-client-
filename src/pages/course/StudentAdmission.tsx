@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Pencil, Trash2, Search, UserPlus } from 'lucide-react';
 
 const StudentAdmission = () => {

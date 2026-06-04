@@ -8,7 +8,6 @@ import {
     ArrowLeft,
     BookOpen,
     FileText,
-    Plus,
     X,
     UserPlus
 } from "lucide-react";
